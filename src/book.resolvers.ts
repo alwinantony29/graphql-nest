@@ -1,8 +1,7 @@
 import { Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
-import { AppService } from './app.service';
-import { Author, Book } from './graphql';
+import { Book } from './graphql';
 
-const authorData = [
+const authorsData = [
   { name: 'test', id: 'a1' },
   { name: 'alwin', id: 'a2' },
 ];
@@ -18,9 +17,9 @@ export class BookResolver {
     return booksData;
   }
 
-  // @ResolveField()
-  // async book(@Parent() author: Author) {
-  //   const { id } = author;
-  //   return booksData.find((b) => b.authorId === id);
-  // }
+  @ResolveField('author')
+  async book(@Parent() book: Book) {
+    const { authorId } = book;
+    return authorsData.find((b) => b.id === authorId);
+  }
 }

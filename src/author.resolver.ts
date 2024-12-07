@@ -1,6 +1,5 @@
 import { Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
-import { AppService } from './app.service';
-import { Author, Book } from './graphql';
+import { Author } from './graphql';
 
 const authorsData = [
   { name: 'test', id: 'a1' },
