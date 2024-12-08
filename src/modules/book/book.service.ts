@@ -17,12 +17,12 @@ export class BookService {
     });
   }
 
-  findAll(): Book[] {
-    return [{ id: '123', authorId: '1', title: 'hey bro you OK?' }];
+  findAll() {
+    return this.prisma.book.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} book`;
+  findOne(id: string) {
+    return this.prisma.book.findFirstOrThrow({ where: { id } });
   }
 
   update(id: number, updateBookInput: UpdateBookInput) {

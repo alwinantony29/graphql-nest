@@ -17,7 +17,7 @@ export class AuthorResolver {
   }
 
   @Query('author')
-  findOne(@Args('id') id: number) {
+  findOne(@Args('id') id: string) {
     return this.authorService.findOne(id);
   }
 

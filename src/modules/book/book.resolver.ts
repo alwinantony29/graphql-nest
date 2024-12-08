@@ -18,7 +18,7 @@ export class BookResolver {
   }
 
   @Query('book')
-  findOne(@Args('id') id: number) {
+  findOne(@Args('id') id: string) {
     return this.bookService.findOne(id);
   }
 

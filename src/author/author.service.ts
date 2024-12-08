@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-
 import { PrismaService } from 'src/shared/services/prisma/prisma.service';
 import { CreateAuthorInput, UpdateAuthorInput } from 'src/graphql';
 
@@ -13,11 +12,11 @@ export class AuthorService {
   }
 
   findAll() {
-    return `This action returns all author`;
+    return this.prisma.author.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} author`;
+  findOne(id: string) {
+    return this.prisma.author.findFirstOrThrow({ where: { id } });
   }
 
   update(id: string, updateAuthorInput: UpdateAuthorInput) {
