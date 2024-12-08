@@ -8,10 +8,51 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export abstract class IQuery {
-    abstract books(): Nullable<Nullable<Book>[]> | Promise<Nullable<Nullable<Book>[]>>;
+export class CreateAuthorInput {
+    name?: Nullable<string>;
+}
 
-    abstract authors(): Nullable<Nullable<Author>[]> | Promise<Nullable<Nullable<Author>[]>>;
+export class UpdateAuthorInput {
+    name?: Nullable<string>;
+}
+
+export class CreateBookInput {
+    title?: Nullable<string>;
+    authorId?: Nullable<string>;
+}
+
+export class UpdateBookInput {
+    id: number;
+}
+
+export class Author {
+    id: string;
+    name?: Nullable<string>;
+    books?: Nullable<Nullable<Book>[]>;
+}
+
+export abstract class IQuery {
+    abstract authors(): Nullable<Author>[] | Promise<Nullable<Author>[]>;
+
+    abstract author(id: number): Nullable<Author> | Promise<Nullable<Author>>;
+
+    abstract books(): Nullable<Book>[] | Promise<Nullable<Book>[]>;
+
+    abstract book(id: number): Nullable<Book> | Promise<Nullable<Book>>;
+}
+
+export abstract class IMutation {
+    abstract createAuthor(createAuthorInput: CreateAuthorInput): Author | Promise<Author>;
+
+    abstract updateAuthor(updateAuthorInput: UpdateAuthorInput): Author | Promise<Author>;
+
+    abstract removeAuthor(id: number): Nullable<Author> | Promise<Nullable<Author>>;
+
+    abstract createBook(createBookInput: CreateBookInput): Book | Promise<Book>;
+
+    abstract updateBook(updateBookInput: UpdateBookInput): Book | Promise<Book>;
+
+    abstract removeBook(id: number): Nullable<Book> | Promise<Nullable<Book>>;
 }
 
 export class Book {
@@ -19,12 +60,6 @@ export class Book {
     title?: Nullable<string>;
     author?: Nullable<Author>;
     authorId?: Nullable<string>;
-}
-
-export class Author {
-    id: string;
-    name?: Nullable<string>;
-    books?: Nullable<Nullable<Book>[]>;
 }
 
 type Nullable<T> = T | null;

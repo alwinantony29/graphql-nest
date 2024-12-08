@@ -12,7 +12,7 @@ export class BookResolver {
     return this.bookService.create(createBookInput);
   }
 
-  @Query('book')
+  @Query('books')
   findAll() {
     return this.bookService.findAll();
   }

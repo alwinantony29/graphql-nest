@@ -4,5 +4,6 @@ import { PrismaService } from './services/prisma/prisma.service';
 @Global()
 @Module({
   providers: [PrismaService],
+  exports: [PrismaService],
 })
 export class SharedModule {}
