@@ -5,20 +5,21 @@ type Author {
 }
 
 input CreateAuthorInput {
-  name: String
+  name: String!
 }
 
 input UpdateAuthorInput {
+  id: ID!
   name: String
 }
 
 type Query {
   authors: [Author]!
-  author(id: Int!): Author
+  author(id: String!): Author
 }
 
 type Mutation {
   createAuthor(createAuthorInput: CreateAuthorInput!): Author!
   updateAuthor(updateAuthorInput: UpdateAuthorInput!): Author!
-  removeAuthor(id: Int!): Author
+  removeAuthor(id: String!): Author
 }

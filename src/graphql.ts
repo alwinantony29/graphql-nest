@@ -9,10 +9,11 @@
 /* eslint-disable */
 
 export class CreateAuthorInput {
-    name?: Nullable<string>;
+    name: string;
 }
 
 export class UpdateAuthorInput {
+    id: string;
     name?: Nullable<string>;
 }
 
@@ -34,7 +35,7 @@ export class Author {
 export abstract class IQuery {
     abstract authors(): Nullable<Author>[] | Promise<Nullable<Author>[]>;
 
-    abstract author(id: number): Nullable<Author> | Promise<Nullable<Author>>;
+    abstract author(id: string): Nullable<Author> | Promise<Nullable<Author>>;
 
     abstract books(): Nullable<Book>[] | Promise<Nullable<Book>[]>;
 
@@ -46,7 +47,7 @@ export abstract class IMutation {
 
     abstract updateAuthor(updateAuthorInput: UpdateAuthorInput): Author | Promise<Author>;
 
-    abstract removeAuthor(id: number): Nullable<Author> | Promise<Nullable<Author>>;
+    abstract removeAuthor(id: string): Nullable<Author> | Promise<Nullable<Author>>;
 
     abstract createBook(createBookInput: CreateBookInput): Book | Promise<Book>;
 

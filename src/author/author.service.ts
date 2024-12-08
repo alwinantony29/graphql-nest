@@ -1,11 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { CreateAuthorInput } from './dto/create-author.input';
-import { UpdateAuthorInput } from './dto/update-author.input';
+
+import { PrismaService } from 'src/shared/services/prisma/prisma.service';
+import { CreateAuthorInput, UpdateAuthorInput } from 'src/graphql';
 
 @Injectable()
 export class AuthorService {
+  constructor(private readonly prisma: PrismaService) {}
   create(createAuthorInput: CreateAuthorInput) {
-    return 'This action adds a new author';
+    return this.prisma.author.create({
+      data: createAuthorInput,
+    });
   }
 
   findAll() {
@@ -16,11 +20,11 @@ export class AuthorService {
     return `This action returns a #${id} author`;
   }
 
-  update(id: number, updateAuthorInput: UpdateAuthorInput) {
+  update(id: string, updateAuthorInput: UpdateAuthorInput) {
     return `This action updates a #${id} author`;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} author`;
   }
 }
