@@ -64,4 +64,8 @@ export class Book {
     authorId?: Nullable<string>;
 }
 
+export abstract class ISubscription {
+    abstract bookCreated(): Book | Promise<Book>;
+}
+
 type Nullable<T> = T | null;

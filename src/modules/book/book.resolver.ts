@@ -5,9 +5,13 @@ import {
   Args,
   ResolveField,
   Parent,
+  Subscription,
 } from '@nestjs/graphql';
 import { BookService } from './book.service';
 import { Book, CreateBookInput, UpdateBookInput } from 'src/graphql';
+import { PubSub } from 'graphql-subscriptions';
+
+const pubSub = new PubSub();
 
 @Resolver('Book')
 export class BookResolver {
@@ -41,5 +45,10 @@ export class BookResolver {
   @ResolveField('author')
   async author(@Parent() book: Book) {
     return this.bookService.findOne(book.id).author();
+  }
+
+  @Subscription('bookCreated')
+  bookCreated() {
+    return pubSub.asyncIterableIterator('postCreated');
   }
 }
