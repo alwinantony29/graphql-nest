@@ -5,7 +5,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { SharedModule } from './shared/shared.module';
 import { BookModule } from './modules/book/book.module';
-import { AuthorModule } from './author/author.module';
+import { AuthorModule } from './modules/author/author.module';
 
 @Module({
   imports: [
