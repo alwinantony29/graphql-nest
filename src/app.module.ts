@@ -6,6 +6,7 @@ import { join } from 'path';
 import { SharedModule } from './shared/shared.module';
 import { BookModule } from './modules/book/book.module';
 import { AuthorModule } from './modules/author/author.module';
+import { ChatModule } from './modules/chat/chat.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { AuthorModule } from './modules/author/author.module';
     SharedModule,
     BookModule,
     AuthorModule,
+    ChatModule,
   ],
   controllers: [AppController],
 })

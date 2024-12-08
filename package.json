@@ -28,6 +28,8 @@
     "@nestjs/graphql": "^12.2.2",
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^10.0.0",
+    "@nestjs/platform-socket.io": "^10.4.13",
+    "@nestjs/websockets": "^10.4.13",
     "@prisma/client": "^6.0.1",
     "graphql": "^16.9.0",
     "prisma": "^6.0.1",
