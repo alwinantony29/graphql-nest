@@ -1,7 +1,5 @@
 import { Injectable } from '@nestjs/common';
-
-import { UpdateBookInput } from './dto/update-book.input';
-import { Book, CreateBookInput } from 'src/graphql';
+import { CreateBookInput, UpdateBookInput } from 'src/graphql';
 import { PrismaService } from 'src/shared/services/prisma/prisma.service';
 
 @Injectable()
