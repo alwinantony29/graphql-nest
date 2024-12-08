@@ -8,6 +8,7 @@ import { BookResolver } from './book.resolvers';
 import { AuthorResolver } from './author.resolver';
 import { SharedModule } from './shared/shared.module';
 import { BookModule } from './modules/book/book.module';
+import { AuthorModule } from './author/author.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { BookModule } from './modules/book/book.module';
     }),
     SharedModule,
     BookModule,
+    AuthorModule,
   ],
   controllers: [AppController],
   providers: [BookResolver, AuthorResolver],
