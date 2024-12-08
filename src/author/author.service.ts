@@ -20,10 +20,13 @@ export class AuthorService {
   }
 
   update(id: string, updateAuthorInput: UpdateAuthorInput) {
-    return `This action updates a #${id} author`;
+    return this.prisma.author.update({
+      where: { id },
+      data: updateAuthorInput,
+    });
   }
 
   remove(id: string) {
-    return `This action removes a #${id} author`;
+    return this.prisma.author.delete({ where: { id } });
   }
 }

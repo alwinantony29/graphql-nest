@@ -23,7 +23,8 @@ export class CreateBookInput {
 }
 
 export class UpdateBookInput {
-    id: number;
+    id: string;
+    title?: Nullable<string>;
 }
 
 export class Author {

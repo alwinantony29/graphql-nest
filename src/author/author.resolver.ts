@@ -1,6 +1,13 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  ResolveField,
+  Parent,
+} from '@nestjs/graphql';
 import { AuthorService } from './author.service';
-import { CreateAuthorInput, UpdateAuthorInput } from 'src/graphql';
+import { Author, CreateAuthorInput, UpdateAuthorInput } from 'src/graphql';
 
 @Resolver('Author')
 export class AuthorResolver {
@@ -29,5 +36,10 @@ export class AuthorResolver {
   @Mutation('removeAuthor')
   remove(@Args('id') id: string) {
     return this.authorService.remove(id);
+  }
+
+  @ResolveField('books')
+  async books(@Parent() author: Author) {
+    return this.authorService.findOne(author.id).books();
   }
 }

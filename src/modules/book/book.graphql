@@ -11,7 +11,8 @@ input CreateBookInput {
 }
 
 input UpdateBookInput {
-  id: Int!
+  id: String!
+  title: String
 }
 
 type Query {

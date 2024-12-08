@@ -23,11 +23,11 @@ export class BookService {
     return this.prisma.book.findFirstOrThrow({ where: { id } });
   }
 
-  update(id: number, updateBookInput: UpdateBookInput) {
-    return `This action updates a #${id} book`;
+  update(id: string, updateBookInput: UpdateBookInput) {
+    return this.prisma.book.update({ where: { id }, data: updateBookInput });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} book`;
+  remove(id: string) {
+    return this.prisma.book.delete({ where: { id } });
   }
 }
