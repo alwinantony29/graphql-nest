@@ -23,5 +23,5 @@ model Book {
   id       String @id @default(uuid())
   title    String
   authorId String
-  author   Author @relation(fields: [authorId], references: [id])
+  author   Author @relation(fields: [authorId], references: [id], onDelete: Cascade)
 }
