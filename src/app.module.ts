@@ -1,11 +1,13 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
+
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { BookResolver } from './book.resolvers';
 import { AuthorResolver } from './author.resolver';
+import { SharedModule } from './shared/shared.module';
+import { BookModule } from './modules/book/book.module';
 
 @Module({
   imports: [
@@ -17,8 +19,10 @@ import { AuthorResolver } from './author.resolver';
         outputAs: 'class',
       },
     }),
+    SharedModule,
+    BookModule,
   ],
   controllers: [AppController],
-  providers: [AppService, BookResolver, AuthorResolver],
+  providers: [BookResolver, AuthorResolver],
 })
 export class AppModule {}
