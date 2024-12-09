@@ -13,6 +13,7 @@ import { ChatModule } from './modules/chat/chat.module';
     GraphQLModule.forRoot<ApolloDriverConfig>({
       subscriptions: {
         'graphql-ws': true,
+        'subscriptions-transport-ws': true,
       },
       driver: ApolloDriver,
       typePaths: ['./**/*.graphql'],
@@ -24,7 +25,7 @@ import { ChatModule } from './modules/chat/chat.module';
     SharedModule,
     BookModule,
     AuthorModule,
-    // ChatModule,
+    ChatModule,
   ],
   controllers: [AppController],
 })

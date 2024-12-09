@@ -6,7 +6,6 @@ import { PrismaService } from 'src/shared/services/prisma/prisma.service';
 export class BookService {
   constructor(private readonly prisma: PrismaService) {}
   async create(createBookInput: CreateBookInput) {
-    console.log('This action adds a new book');
     return this.prisma.book.create({
       data: {
         title: createBookInput.title,

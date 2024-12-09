@@ -18,8 +18,10 @@ export class BookResolver {
   constructor(private readonly bookService: BookService) {}
 
   @Mutation('createBook')
-  create(@Args('createBookInput') createBookInput: CreateBookInput) {
-    return this.bookService.create(createBookInput);
+  async create(@Args('createBookInput') createBookInput: CreateBookInput) {
+    const book = await this.bookService.create(createBookInput);
+    await pubSub.publish('bookCreated', { bookCreated: book });
+    return book;
   }
 
   @Query('books')
@@ -33,7 +35,7 @@ export class BookResolver {
   }
 
   @Mutation('updateBook')
-  update(@Args('updateBookInput') updateBookInput: UpdateBookInput) {
+  async update(@Args('updateBookInput') updateBookInput: UpdateBookInput) {
     return this.bookService.update(updateBookInput.id, updateBookInput);
   }
 
@@ -49,6 +51,6 @@ export class BookResolver {
 
   @Subscription('bookCreated')
   bookCreated() {
-    return pubSub.asyncIterableIterator('postCreated');
+    return pubSub.asyncIterableIterator('bookCreated');
   }
 }
